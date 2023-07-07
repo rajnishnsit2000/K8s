@@ -1,0 +1,8 @@
+- !grant
+  role: !group delegation/consumers
+  member: !layer /data/demo/k8s/cityapp
+
+# Load the policy to data/vault/secrets-safe:
+
+# $ conjur policy load -b data/vault/secrets-safe -f grant_permissions.yml
+
