@@ -4,5 +4,5 @@
 
 # Load the policy to data/vault/secrets-safe:
 
-# $ conjur policy load -b data/vault/secrets-safe -f grant_permissions.yml
+# $ conjur policy load -b data/vault/cityapp -f grant_permissions.yml
 
