@@ -1,0 +1,5 @@
+# Grant the host permissions to the JWT Authenticator
+- !grant
+  roles:
+  - !group demo-k8s/consumers
+  member: !layer /data/demo/k8s/cityapp
