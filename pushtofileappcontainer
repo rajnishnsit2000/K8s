@@ -46,7 +46,7 @@ spec:
         conjur.org/secret-file-format.secretsprovider: json
         conjur.org/secrets-refresh-interval: 10s
     spec:
-      serviceAccountName: secretsprovider
+      serviceAccountName: secretless
       containers:
       - name: cityapp
         image: docker.io/joetanx/cityapp:php
