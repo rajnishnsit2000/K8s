@@ -7,32 +7,34 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: secretsprovider
+  name: secretless
   namespace: cityapp
 spec:
   type: NodePort
   selector:
-    app: secretsprovider
+    app: secretless
   ports:
-  - protocol: TCP
-    port: 8080
-    targetPort: 8080
-    nodePort: 30007
+      # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
+    - port: 8080
+      targetPort: 8080
+      # Optional field
+      # By default and for convenience, the Kubernetes control plane will allocate a port from a range (default: 30000-32767)
+      nodePort: 30007
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: secretsprovider
+  name: secretless
   namespace: cityapp
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: secretsprovider
+      app: secretless
   template:
     metadata:
       labels:
-        app: secretsprovider
+        app: secretless
       annotations:
         # https://docs-er.cyberark.com/ConjurCloud/en/Content/Integrations/k8s-ocp/cjr-k8s-secrets-provider-ref.htm
         conjur.org/container-mode: sidecar
@@ -55,7 +57,7 @@ spec:
         - name: conjur-secrets
           mountPath: /conjur
           readOnly: true
-      - name: secretsprovider
+      - name: secretless
         image: docker.io/cyberark/secrets-provider-for-k8s:latest
         imagePullPolicy: IfNotPresent
         volumeMounts:
